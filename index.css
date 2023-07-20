@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+    @font-face {
+        font-family: AVEROX;
+        src: url(./src/fonts/Averox-MVyRJ.otf) format("woff");
+    }
+}
