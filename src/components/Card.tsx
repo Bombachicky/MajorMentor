@@ -4,7 +4,6 @@ interface Props {
     course : string,
     image  : string
 }
-
 export function Card({ course, image } : Props){
     
     return(
