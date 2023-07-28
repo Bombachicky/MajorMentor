@@ -21,5 +21,6 @@ from pdf_gen import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('pdf', views.pdf, name='pdf')
+    path('pdf/<str:name>/', views.pdf, name='pdf'),
+    path('courses/', views.course_list, name='courses')
 ]

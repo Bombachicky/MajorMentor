@@ -11,13 +11,27 @@ from reportlab.lib.units import inch
 from reportlab.lib.enums import TA_LEFT
 from reportlab.graphics.shapes import Drawing, Line, LineShape
 from reportlab.graphics import renderPDF
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
 
+from .models import Course
+from .serializers import *
 
 
 openai.api_key = settings.OPENAI_API_KEY
 
 def index(request):
     return HttpResponse("Hello, world.")
+
+@api_view(['GET', 'POST'])
+def course_list(request):
+    if request.method == 'GET':
+        data = Course.objects.all()
+
+        serializer = CourseSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
 
 # Define a custom Flowable class that draws a line
 class LineFlowable(Flowable):
@@ -35,13 +49,13 @@ class LineFlowable(Flowable):
         d.add(line)
         renderPDF.draw(d, self.canv, 0, 0)
 
-def pdf(request):
+def pdf(request, name):
     result = ''
     if openai.api_key is not None:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "user", "content": "Make me a document on how to study Intro to C"},
+                {"role": "user", "content": f"Make me a document on how to study {name}"},
             ]
         )       
         result = response['choices'][0]['message']['content']
