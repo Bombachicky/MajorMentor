@@ -12,7 +12,7 @@ export function Navbar(){
                 </div>
                 <div className="flex items-center text-white">
                     <div className={"hover:cursor-pointer font-averox " + navbarItem}>Home</div>
-                    <div className={"hover:cursor-pointer font-averox " + navbarItem}>Courses</div>
+                    <div className={"hover:cursor-pointer font-averox " + navbarItem}>Made By Bombachicky</div>
                 </div>
             </div>
         </>

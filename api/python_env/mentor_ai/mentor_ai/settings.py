@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w#jgl9iy(#m@cr=8@_9eu7kyx67=qp#r2a20n^cz39_-0=)pk@'
 OPENAI_API_KEY = config('OPENAI_API_KEY')
+DATABASE_PASS = config('DATABASE_PASS')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
@@ -81,9 +82,16 @@ WSGI_APPLICATION = 'mentor_ai.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django_cockroachdb',
+        'NAME': 'defaultdb',
+        'USER': 'kristian',
+        'PASSWORD': DATABASE_PASS,
+        'HOST': 'major-mentor-4743.g8z.cockroachlabs.cloud',
+        'PORT': '26257',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+        },
+    },
 }
 
 

@@ -45,7 +45,8 @@ const ChatBox: React.FC = () => {
                 onChange={handleInputChange} 
                 className="mb-4 p-2 border border-ucfyellow text-white bg-ucfblack rounded resize-none h-16 w-[500px]"
             />
-            <button type="submit" className="bg-ucfyellow text-purple-500 rounded py-2 mx-4 w-[64px] h-[64px]">{isLoading ? <Spinner /> : (<div className="flex justify-center">{arrow}</div>)}
+            <button type="submit" className="bg-ucfblack hover:bg-ucfyellow border border-ucfyellow hover:shadow-glow
+                    transition-all duration-200 text-purple-500 rounded py-2 mx-4 w-[64px] h-[64px]">{isLoading ? <Spinner /> : (<div className="flex justify-center">{arrow}</div>)}
             </button>
             </form>
         </div>
